@@ -124,4 +124,23 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function getCompName($id){
+        $compArray=Company::model()->findByPk($id);
+        return $compArray->company_name;
+    }
+
+    public function getAllCompName(){
+        $compArray=CHtml::listData(Company::model()->findAll(),'id','company_name');
+        return $compArray;
+    }
+
+    public function getActiveName(){
+        $activeArray=CHtml::listData(Active::model()->findAll(),'id','active');
+        return $activeArray;
+    }
+    public function getAccessName(){
+        $accessArray=CHtml::listData(Access::model()->findAll(),'id','access');
+        return $accessArray;
+    }
 }

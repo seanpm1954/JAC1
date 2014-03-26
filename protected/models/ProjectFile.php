@@ -13,6 +13,8 @@
  */
 class ProjectFile extends CActiveRecord
 {
+    public $uploadFile;
+
 	/**
 	 * @return string the associated database table name
 	 */

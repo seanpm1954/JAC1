@@ -25,15 +25,15 @@
 		<?php echo $form->error($model,'project_name'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
-		<?php echo $form->error($model,'user_id'); ?>
-	</div>
+<!--	<div class="row">-->
+<!--		--><?php //echo $form->labelEx($model,'user_id'); ?>
+<!--		--><?php //echo $form->textField($model,'user_id'); ?>
+<!--		--><?php //echo $form->error($model,'user_id'); ?>
+<!--	</div>-->
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'company_id'); ?>
-		<?php echo $form->textField($model,'company_id'); ?>
+        <?php echo $form->dropDownList($model,'company_id', $model->getCompName()); ?>
 		<?php echo $form->error($model,'company_id'); ?>
 	</div>
 

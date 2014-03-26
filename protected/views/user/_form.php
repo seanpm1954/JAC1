@@ -21,7 +21,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'company_id'); ?>
-		<?php echo $form->textField($model,'company_id'); ?>
+        <?php echo $form->dropDownList($model,'company_id',$model->getAllCompName()); ?>
 		<?php echo $form->error($model,'company_id'); ?>
 	</div>
 
@@ -57,13 +57,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'access'); ?>
-		<?php echo $form->textField($model,'access'); ?>
+        <?php echo $form->dropDownList($model,'access',$model->getAccessName()); ?>
 		<?php echo $form->error($model,'access'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
+        <?php echo $form->dropDownList($model,'active', $model->getActiveName()); ?>
 		<?php echo $form->error($model,'active'); ?>
 	</div>
 

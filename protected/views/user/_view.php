@@ -6,11 +6,11 @@
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
+	<?php echo CHtml::link(CHtml::encode("Edit"), array('update', 'id'=>$data->id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('company_id')); ?>:</b>
-	<?php echo CHtml::encode($data->company_id); ?>
+    <?php echo CHtml::encode($data->getCompName($data->company_id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('first_name')); ?>:</b>
