@@ -28,7 +28,7 @@ class ProjectFileController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view'.'download'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -135,11 +135,13 @@ class ProjectFileController extends Controller
                     'params'=>array(':id'=>Yii::app()->user->comp_id),
                 )
             ));
-        }
+        }//end else
+
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
         ));
-        }
+
+    }
 
 	/**
 	 * Manages all models.
@@ -183,4 +185,14 @@ class ProjectFileController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+    function actionDownload($name){
+        $model= new ProjectFile;
+        $filecontent=file_get_contents($model->path1.$name);
+        header("Content-Type: text/plain");
+        header("Content-disposition: attachment; filename=$name");
+        header("Pragma: no-cache");
+        echo $filecontent;
+        exit;
+    }
 }

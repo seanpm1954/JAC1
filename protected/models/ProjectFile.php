@@ -14,7 +14,7 @@
 class ProjectFile extends CActiveRecord
 {
     public $uploadFile;
-
+    public $path1="/Users/smaloney/Sites/JAC1/uploads/";
 	/**
 	 * @return string the associated database table name
 	 */
