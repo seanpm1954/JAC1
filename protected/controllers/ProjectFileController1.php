@@ -123,22 +123,47 @@ class ProjectFileController extends Controller
 	public function actionIndex()
 	{
         if(Yii::app()->user->access == 1 || Yii::app()->user->access == 3){
-
-            $dataProvider=new CActiveDataProvider('ProjectFile',array(
+            $dataProvider=new CActiveDataProvider('ProjectFile');
+            $this->render('index',array(
+                'dataProvider'=>$dataProvider,
             ));
+        }else
+        {
+          $dataProvider1=new CActiveDataProvider('ProjectFile');
+//            //get user project by company_id
+            $criteria= new CDbCriteria();
+           $criteria->condition = "company_id=".Yii::app()->user->comp_id;
+//            echo Yii::app()->user->comp_id. "<br/>";
+//
+            $userComp= Project::model()->findAll($criteria);
+            $count= count($userComp);
+           echo $count."<br/>";
+            $criteria1= new CDbCriteria();
+            $criteria2= new CDbCriteria();
+//            //loop thru $userComp
+//            //get user projectFiles from $userComp['id']
+//
+           foreach($userComp as $cmp){
+                $criteria2->compare('project_id',$cmp->id, true,'OR');
+//                echo $cmp->id . "<br/>";
+            }
+            $criteria1->addCondition($criteria2->condition);
+            $criteria1->params+=$criteria2->params;
 
-        }else{
-            $dataProvider=new CActiveDataProvider('ProjectFile',array(
-                'criteria'=>array(
-                    'with'=>'project',
-                    'condition'=>'company_id=:id',
-                    'params'=>array(':id'=>Yii::app()->user->comp_id),
-                )
-            ));
+            $dataProvider1=new CActiveDataProvider('ProjectFile');
+
+                $userFiles= ProjectFile::model()->findAll($criteria1);
+                $rawData=new CArrayDataProvider($userFiles, array());
+                $this->render('index',array(
+                    'dataProvider'=>$dataProvider1,
+                    'criteria'=>$criteria1,
+                ));
+
+
+
+
         }
-        $this->render('index',array(
-            'dataProvider'=>$dataProvider,
-        ));
+
         }
 
 	/**

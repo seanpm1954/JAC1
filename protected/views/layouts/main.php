@@ -35,10 +35,10 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
                 //Co User Menu
-				array('label'=>'Projects', 'url'=>array('/project/index'),'visible'=>( $access==4)),
+                array('label'=>'Project Files', 'url'=>array('/projectFile/index'),'visible'=>( $access==4)),
 
 				//Co Admin Menu
-                array('label'=>'Projects', 'url'=>array('/project/index'),'visible'=>( $access==2)),
+                array('label'=>'Project Files', 'url'=>array('/projectFile/index'),'visible'=>( $access==2)),
                 array('label'=>'Uploads', 'url'=>array('/project/upIndex'),'visible'=>( $access==2)),
 
                 //Site User Menu
