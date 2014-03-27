@@ -122,7 +122,12 @@ class ProjectFileController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+        $theFile = ProjectFile::model()->findByPK($id);
+
+
+        unlink("/Users/smaloney/Sites/JAC1/uploads/".$theFile->projectFile_name);
 		$this->loadModel($id)->delete();
+
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
