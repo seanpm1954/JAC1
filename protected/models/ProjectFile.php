@@ -33,7 +33,8 @@ class ProjectFile extends CActiveRecord
 		return array(
 			array('projectFile_name, project_id', 'required'),
 			array('project_id', 'numerical', 'integerOnly'=>true),
-			array('projectFile_name', 'length', 'max'=>50),
+			array('projectFile_name', 'length', 'max'=>150),
+            array('uploadFile', 'file','types'=>'pdf,xlsx,xls,doc,docx'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, projectFile_name, project_id', 'safe', 'on'=>'search'),
@@ -101,4 +102,9 @@ class ProjectFile extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+public function getProjects(){
+    $projs=CHtml::listData(Project::model()->findAll(),'id','project_name');
+    return $projs;
+}
+
 }

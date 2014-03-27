@@ -28,12 +28,12 @@ class ProjectFileController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'.'download'),
+				'actions'=>array('index','view'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-                'expression'=>"Yii::app()->user->access==1 || Yii::app()->user->access==3",
+                'expression'=>"Yii::app()->user->access==1 || Yii::app()->user->access==3 || Yii::app()->user->access==2",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
@@ -70,9 +70,21 @@ class ProjectFileController extends Controller
 		if(isset($_POST['ProjectFile']))
 		{
 			$model->attributes=$_POST['ProjectFile'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+//			if($model->save())
+//				$this->redirect(array('view','id'=>$model->id));
+            //$uProj = new Userproject;
+            $path1="/Users/smaloney/Sites/JAC1/uploads/";
+            $model->attributes=$_POST['ProjectFile'];
+            //$model1->atttibutes=$_POST['User'];
+            $model->uploadFile=CUploadedFile::getInstance($model,'uploadFile');
+            $model->projectFile_name=$model->uploadFile->name;
+            if($model->save(false)){
+                $model->uploadFile->saveAs($path1.$model->uploadFile->name);
+                $model->project_id=$model->getAttribute('project_id');
+
+                $this->redirect(array('projectFile/index'));
 		}
+        }
 
 		$this->render('create',array(
 			'model'=>$model,
@@ -186,13 +198,6 @@ class ProjectFileController extends Controller
 		}
 	}
 
-    function actionDownload($name){
-        $model= new ProjectFile;
-        $filecontent=file_get_contents($model->path1.$name);
-        header("Content-Type: text/plain");
-        header("Content-disposition: attachment; filename=$name");
-        header("Pragma: no-cache");
-        echo $filecontent;
-        exit;
-    }
+
+
 }

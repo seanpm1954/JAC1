@@ -13,6 +13,8 @@
 <!--    <b>--><?php //echo CHtml::encode("Company"); ?><!--:</b>-->
     <b><?php echo CHtml::encode($data->project->company->company_name); ?></b>
 	<br/>
+    <b><?php echo CHtml::encode($data->project->project_name); ?></b>
+    <br/>
     <b><?php echo CHtml::encode($data->getAttributeLabel('projectFile_name')); ?>:</b>
 <!--	--><?php //echo CHtml::encode($data->projectFile_name); ?>
 <!--    --><?php //echo CHtml::link(CHtml::encode($data->projectFile_name), array('view', 'id'=>$data->id)); ?>

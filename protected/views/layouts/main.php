@@ -39,7 +39,7 @@
 
 				//Co Admin Menu
                 array('label'=>'Project Files', 'url'=>array('/projectFile/index'),'visible'=>( $access==2)),
-                array('label'=>'Uploads', 'url'=>array('/project/upIndex'),'visible'=>( $access==2)),
+                array('label'=>'Uploads', 'url'=>array('/projectFile/create'),'visible'=>( $access==2)),
 
                 //Site User Menu
                 array('label'=>'Companies', 'url'=>array('/company/index'),'visible'=>( $access==3)),
