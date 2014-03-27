@@ -78,7 +78,7 @@ class ProjectFileController extends Controller
             //$model1->atttibutes=$_POST['User'];
             $model->uploadFile=CUploadedFile::getInstance($model,'uploadFile');
             $model->projectFile_name=$model->uploadFile->name;
-            if($model->save(false)){
+            if($model->save()){
                 $model->uploadFile->saveAs($path1.$model->uploadFile->name);
                 $model->project_id=$model->getAttribute('project_id');
 

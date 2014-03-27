@@ -31,7 +31,7 @@ class ProjectFile extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('projectFile_name, project_id', 'required'),
+			array('projectFile_name, project_id', 'required', 'message'=>'Contact JAC to create a Project'),
 			array('project_id', 'numerical', 'integerOnly'=>true),
 			array('projectFile_name', 'length', 'max'=>150),
             array('uploadFile', 'file','types'=>'pdf,xlsx,xls,doc,docx'),
@@ -106,5 +106,15 @@ public function getProjects(){
     $projs=CHtml::listData(Project::model()->findAll(),'id','project_name');
     return $projs;
 }
+
+    public function getMyProjects(){
+        $model = new Project;
+        $criteria = new CDbCriteria();
+        $criteria->addCondition("company_id=:company_id");
+        $criteria->params = array(':company_id' => Yii::app()->user->comp_id);
+        $myProjects = CHtml::listData( Project::model()->findAll($criteria, array(':company_id' => Yii::app()->user->comp_id,)),'id','project_name');
+        return $myProjects;
+
+    }
 
 }

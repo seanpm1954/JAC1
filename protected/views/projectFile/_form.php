@@ -26,13 +26,24 @@
 <!--		--><?php //echo $form->error($model,'projectFile_name'); ?>
 <!--	</div>-->
 
+<!--    if Admin use this-->
+
+    <?php  if(Yii::app()->user->access == 1 || Yii::app()->user->access == 3){ ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'project_id'); ?>
-<!--		--><?php //echo $form->textField($model,'project_id'); ?>
         <?php echo $form->dropDownList($model,'project_id',$model->getProjects()); ?>
 		<?php echo $form->error($model,'project_id'); ?>
 	</div>
+     <?php }else { ?>
+    <!--clients use this-->
+        <div class="row">
+            <?php echo $form->labelEx($model,'project_id'); ?>
+            <?php echo $form->dropDownList($model,'project_id',$model->getMyProjects()); ?>
+            <?php echo $form->error($model,'project_id'); ?>
+        </div>
 
+
+    <?php } ?>
     <?php
     echo $form->labelEx($model, 'uploadFile');
     echo $form->fileField($model, 'uploadFile');
