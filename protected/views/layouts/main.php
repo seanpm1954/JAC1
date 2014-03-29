@@ -23,8 +23,9 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-	</div><!-- header -->
+<!--		<div id="logo">--><?php //echo CHtml::encode(Yii::app()->name); ?><!--</div>-->
+        <div id="logo"><?php echo "<img src=".Yii::app()->request->baseUrl ."/images/JAC.png>" ?></div>
+    </div><!-- header -->
 <?php if(isset(Yii::app()->user->access)){
     $access=Yii::app()->user->access;
 }else{

@@ -44,11 +44,12 @@
 
 
     <?php } ?>
-    <?php
-    echo $form->labelEx($model, 'uploadFile');
-    echo $form->fileField($model, 'uploadFile');
-    echo $form->error($model, 'uploadFile');
-    ?>
+<?php echo $model->message; ?>
+    <div class="row">
+    <?php echo $form->labelEx($model, 'uploadFile'); ?>
+    <?php echo $form->fileField($model, 'uploadFile'); ?>
+    <?php  echo $form->error($model, 'uploadFile'); ?>
+     </div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

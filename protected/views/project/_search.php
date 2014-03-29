@@ -21,10 +21,10 @@
 		<?php echo $form->textField($model,'project_name',array('size'=>20,'maxlength'=>20)); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
-	</div>
+<!--	<div class="row">-->
+<!--		--><?php //echo $form->label($model,'user_id'); ?>
+<!--		--><?php //echo $form->textField($model,'user_id'); ?>
+<!--	</div>-->
 
 	<div class="row">
 		<?php echo $form->label($model,'company_id'); ?>

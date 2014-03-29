@@ -15,6 +15,7 @@ class ProjectFile extends CActiveRecord
 {
     public $uploadFile;
     public $path1="/Users/smaloney/Sites/JAC1/uploads/";
+    public $message="";
 	/**
 	 * @return string the associated database table name
 	 */
@@ -31,10 +32,11 @@ class ProjectFile extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('uploadFile', 'file', 'types'=>'pdf,xlsx,xls,doc,docx'),
 			array('projectFile_name, project_id', 'required', 'message'=>'Contact JAC to create a Project'),
 			array('project_id', 'numerical', 'integerOnly'=>true),
 			array('projectFile_name', 'length', 'max'=>150),
-            array('uploadFile', 'file','types'=>'pdf,xlsx,xls,doc,docx'),
+            //array('uploadFile', 'file', 'types'=>'pdf,xlsx,xls,doc,docx'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, projectFile_name, project_id', 'safe', 'on'=>'search'),

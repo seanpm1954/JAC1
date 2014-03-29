@@ -62,6 +62,7 @@ class ProjectFileController extends Controller
 	 */
 	public function actionCreate()
 	{
+
 		$model=new ProjectFile;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -76,14 +77,19 @@ class ProjectFileController extends Controller
             $path1="/Users/smaloney/Sites/JAC1/uploads/";
             $model->attributes=$_POST['ProjectFile'];
             //$model1->atttibutes=$_POST['User'];
-            $model->uploadFile=CUploadedFile::getInstance($model,'uploadFile');
-            $model->projectFile_name=$model->uploadFile->name;
-            if($model->save()){
-                $model->uploadFile->saveAs($path1.$model->uploadFile->name);
-                $model->project_id=$model->getAttribute('project_id');
 
-                $this->redirect(array('projectFile/index'));
-		}
+
+
+            $model->uploadFile=CUploadedFile::getInstance($model,'uploadFile');
+               $model->projectFile_name=$model->uploadFile->name;
+               if($model->save()){
+                   $model->uploadFile->saveAs($path1.$model->uploadFile->name);
+                   $model->project_id=$model->getAttribute('project_id');
+
+                   $this->redirect(array('projectFile/index'));
+               }
+
+
         }
 
 		$this->render('create',array(
