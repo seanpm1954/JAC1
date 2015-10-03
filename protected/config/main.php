@@ -54,10 +54,10 @@ return array(
 		// uncomment the following to use a MySQL database
 
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=JAC',
+			'connectionString' => 'mysql:host=localhost;dbname=',
 			'emulatePrepare' => true,
-			'username' => 'james',
-			'password' => 'jpmgolf',
+			'username' => '',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 
